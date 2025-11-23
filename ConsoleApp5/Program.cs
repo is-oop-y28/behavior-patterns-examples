@@ -1,12 +1,12 @@
-﻿using System.Globalization;
-using ConsoleApp5;
-using ConsoleApp5.Command;
+﻿using ConsoleApp5.Command;
 using ConsoleApp5.CoR;
 using ConsoleApp5.CoR.Handlers;
 using ConsoleApp5.Observables;
 using ConsoleApp5.Strategy;
 
-internal class Program
+namespace ConsoleApp5;
+
+internal static class Program
 {
     public static void Main(string[] args)
     {

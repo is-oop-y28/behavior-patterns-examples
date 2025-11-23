@@ -2,6 +2,8 @@
 using ConsoleApp5.Observables;
 using ConsoleApp5.Strategy;
 
+namespace ConsoleApp5;
+
 public class Week : IEnumerable<string>, IMyObservable<string>
 {
     private List<IMyObserver<string>> _observers = new();

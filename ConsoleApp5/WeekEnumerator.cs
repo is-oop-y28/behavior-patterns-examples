@@ -1,6 +1,7 @@
 ﻿using System.Collections;
-using ConsoleApp5;
 using ConsoleApp5.Strategy;
+
+namespace ConsoleApp5;
 
 public class WeekEnumerator : IEnumerator<string>
 {
