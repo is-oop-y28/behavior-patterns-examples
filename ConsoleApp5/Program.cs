@@ -1,7 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using System.Globalization;
+﻿using System.Globalization;
 using ConsoleApp5;
+using ConsoleApp5.Command;
+using ConsoleApp5.CoR;
+using ConsoleApp5.CoR.Handlers;
 using ConsoleApp5.Observables;
 using ConsoleApp5.Strategy;
 
@@ -21,6 +22,33 @@ internal class Program
         foreach (var dayOfWeek in week)
         {
             Console.Write($"{dayOfWeek}, ");
+        }
+        
+        // ---- 
+        
+        IHandler<int>[] handlers =
+        [
+            new FooBarHandler(),
+            new FizzBuzzHandler(),
+            new FizzHandler(),
+            new BuzzHandler(),
+            new FinallyHandler()
+        ];
+        var root = handlers.Aggregate((acc, next) =>
+        {
+            acc.SetNext(next);
+            return acc;
+        });
+        
+        var ctx = new Context();
+        var flushCmd = new FlushResultToConsoleCommand(ctx);
+        var resolveCmd = new SolveFuzzBuzzTaskCommand(ctx, root);
+        var array = Enumerable.Range(1, 30).ToArray();
+        foreach (var i in array)
+        {
+            resolveCmd.Execute(i);
+            flushCmd.Execute();
+            // if (i == 29) flushCmd.Revert();
         }
     }
 }
